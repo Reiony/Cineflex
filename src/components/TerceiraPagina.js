@@ -7,14 +7,20 @@ export default function TerceiraPagina() {
     const { idSessao } = useParams()
     const [sumariosessao, setSumariosessao] = useState([])
     const [assentosescolhidos, setAssentosescolhidos] = useState([])
-    /* function AdicionaAssento(index, disponivel) {
-        if (disponivel) {
-            const novoArray = [...assentosescolhidos, index + 1]
+    function VerificaAssento(posicao,disponivel) {
+        if (disponivel){
+            const novoArray = [...assentosescolhidos, posicao]
+        if (!assentosescolhidos.includes(posicao)) {
             setAssentosescolhidos(novoArray)
+        }else{
+            const  ArrayFiltrado = novoArray.filter((e)=>posicao!==e)
+            setAssentosescolhidos(ArrayFiltrado)
         }
-        /* const arrayFiltrado = novoArray.filter((e) => { return e !== (index + 1) })
-        setAssentosescolhidos(arrayFiltrado)
-     } */
+        console.log(assentosescolhidos)
+        } else {
+            alert("Este assento está indisponível")
+        }
+     }
 
     useEffect(() => {
         const prometido = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`)
@@ -37,13 +43,12 @@ export default function TerceiraPagina() {
             <h3>Selecione o(s) assento(s)</h3>
             <CaixaAssentos>
                 {sumariosessao.seats.map((item, index) =>
-                    <BolaAssento isAvailable={item.isAvailable} /* onClick={() => AdicionaAssento(index, item.isAvailable)} */ >
+                    <BolaAssento isAvailable={item.isAvailable} assentosescolhidos={assentosescolhidos} name={item.name} onClick={() => VerificaAssento(item.name,item.isAvailable)} >
                         <h4>{item.name}</h4>
                     </BolaAssento>
                 )}
             </CaixaAssentos>
             <LegendaAssentos />
-            {assentosescolhidos}
             <FormComprador>
                 <h2>Nome do Comprador:</h2>
                 <input placeholder="Digite seu nome..."></input>
@@ -119,8 +124,8 @@ const CaixaAssentos = styled.div`
 const BolaAssento = styled.div`
     width: 26px;
     height: 26px;
-    background: ${props => props.isAvailable ? "#C3CFD9" : "#FBE192"};
-    border: 1px solid ${props => props.isAvailable ? "#808F9D" : "#F7C52B"};
+    background: ${props => props.isAvailable ? props.assentosescolhidos.includes(props.name)? "#1AAE9E" :"#C3CFD9" : "#FBE192"};
+    border: 1px solid ${props => props.isAvailable ? props.assentosescolhidos.includes(props.name)?"#0E7D71" :"#808F9D" : "#F7C52B"};
     border-radius: 12px;
     display:flex;
     justify-content: center;
