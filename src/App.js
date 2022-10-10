@@ -10,6 +10,7 @@ export default function App() {
     const [cpf, setCPF] = useState("")
     const [name, setName] = useState("")
     const [assentosescolhidos, setAssentosescolhidos] = useState([])
+    const [sumariosessao, setSumariosessao] = useState([])
     return (
         <BrowserRouter>
             <GlobalStyle />
@@ -26,8 +27,11 @@ export default function App() {
                     setName={setName}
                     assentosescolhidos={assentosescolhidos}
                     setAssentosescolhidos={setAssentosescolhidos}
+                    sumariosessao={sumariosessao}
+                    setSumariosessao={setSumariosessao}
                 />} />
-                <Route path="/sucesso" element={<QuartaPagina/>} />
+                <Route path="/sucesso" element={<QuartaPagina name={name} cpf={cpf} assentosescolhidos={assentosescolhidos} sumariosessao={sumariosessao}
+                    setSumariosessao={setSumariosessao}/>} />
             </Routes>
         </BrowserRouter>
     )
