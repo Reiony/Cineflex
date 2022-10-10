@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LegendaAssentos from "./LegendaAssentos"
 import Form from "./Form"
 export default function TerceiraPagina({cpf, setCPF, name, setName, assentosescolhidos, setAssentosescolhidos, sumariosessao, setSumariosessao}) {
