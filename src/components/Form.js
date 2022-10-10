@@ -1,9 +1,26 @@
-/* export default function Form() {
-    const [formulario, setFormulario] = useState({
-        name:'',
-        cpf:''})
+import styled from "styled-components";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+export default function Form({ assentosescolhidos, name, setName, cpf, setCPF}) {
+    const navegar = useNavigate();
     function ValidacaoFinal(event) {
         event.preventDefault();
+        const URL= "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many";
+        /* if (cpf.length !== 11) {
+            alert('CPF Inválido - Precisa ter 11 Dígitos')
+            return
+        } */
+        const request = axios.post(URL, { ids: assentosescolhidos, name: name, cpf: cpf });
+        request.then((response) => {
+            console.log(response.data)
+            navegar("/sucesso")
+        })
+        request.catch(error => {
+            alert(error.response.data)
+            console.log(error.response.data)
+            navegar("/sucesso")
+        })
     }
     return (
         <FormComprador onSubmit={ValidacaoFinal}>
@@ -11,18 +28,19 @@
             <input
                 required
                 placeholder="Digite seu nome..."
-                name="description"
-                onChange={handleForm}
-                value={formulario.nome}
+                name="name"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
             />
             <label>CPF do Comprador:</label>
             <input
                 required
                 placeholder="Digite seu CPF..."
-                name="description"
-                onChange={handleForm}
-                value={formulario.cpf}
+                name="cpf"
+                onChange={(e) => setCPF(e.target.value)}
+                value={cpf}
             />
+            <button type="submit"><h5>Reservar Assentos</h5></button>
         </FormComprador>
     )
 }
@@ -33,7 +51,7 @@ const FormComprador = styled.form`
     padding:20px;
     gap:10px;
     margin-top:20px;
-    h2{
+    label{
         width: 327px;
         height: 25px;
         font-family: 'Roboto';
@@ -58,4 +76,4 @@ const FormComprador = styled.form`
             font-style: italic;
         }
     }
-` */
+`

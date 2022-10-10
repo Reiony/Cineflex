@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LegendaAssentos from "./LegendaAssentos"
-export default function TerceiraPagina() {
+import Form from "./Form"
+export default function TerceiraPagina({cpf, setCPF, name, setName, assentosescolhidos, setAssentosescolhidos}) {
     const { idSessao } = useParams()
     const [sumariosessao, setSumariosessao] = useState([])
-    const [assentosescolhidos, setAssentosescolhidos] = useState([])
     function VerificaAssento(posicao,disponivel) {
         if (disponivel){
             const novoArray = [...assentosescolhidos, posicao]
@@ -49,13 +49,7 @@ export default function TerceiraPagina() {
                 )}
             </CaixaAssentos>
             <LegendaAssentos />
-            <FormComprador>
-                <h2>Nome do Comprador:</h2>
-                <input placeholder="Digite seu nome..."></input>
-                <h2>CPF do Comprador:</h2>
-                <input placeholder="Digite seu nome..."></input>
-            </FormComprador>
-            <button><h5>Reservar Assentos</h5></button>
+            <Form assentosescolhidos={assentosescolhidos} name={name} setName={setName} cpf={cpf} setCPF={setCPF}></Form>
             <FooterFilme>
                 <Borda>
                     <img src={sumariosessao.movie.posterURL} alt={sumariosessao.movie.posterURL} />
@@ -185,37 +179,4 @@ const Borda = styled.div`
 const ResumoFilmeSelecionado = styled.div`
     display:flex;
     flex-direction:column;
-`
-
-const FormComprador = styled.div`
-    display:flex;
-    flex-direction:column;
-    padding:20px;
-    gap:10px;
-    margin-top:20px;
-    h2{
-        width: 327px;
-        height: 25px;
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 21px;
-        display: flex;
-        align-items: center;
-
-        color: #293845;
-    }
-    input{
-        font-family: 'Roboto';
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 21px;
-        display: flex;
-        align-items: center;
-        ::placeholder{
-            color: #AFAFAF;
-            font-style: italic;
-        }
-    }
 `
