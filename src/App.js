@@ -30,7 +30,7 @@ export default function App() {
                     sumariosessao={sumariosessao}
                     setSumariosessao={setSumariosessao}
                 />} />
-                <Route path="/sucesso" element={<QuartaPagina name={name} cpf={cpf} assentosescolhidos={assentosescolhidos} sumariosessao={sumariosessao}
+                <Route path="/sucesso" element={<QuartaPagina name={name} setName={setName} cpf={cpf} setCPF={setCPF} assentosescolhidos={assentosescolhidos} setAssentosescolhidos={setAssentosescolhidos} sumariosessao={sumariosessao}
                     setSumariosessao={setSumariosessao}/>} />
             </Routes>
         </BrowserRouter>
