@@ -7,10 +7,10 @@ export default function Form({ assentosescolhidos, name, setName, cpf, setCPF}) 
     function ValidacaoFinal(event) {
         event.preventDefault();
         const URL= "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many";
-        /* if (cpf.length !== 11) {
+        if (cpf.length !== 11) {
             alert('CPF Inválido - Precisa ter 11 Dígitos')
             return
-        } */
+        }
         const request = axios.post(URL, { ids: assentosescolhidos, name: name, cpf: cpf });
         request.then((response) => {
             console.log(response.data)
