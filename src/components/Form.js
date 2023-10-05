@@ -12,12 +12,10 @@ export default function Form({ assentosescolhidos, name, setName, cpf, setCPF}) 
         }
         const request = axios.post(URL, { ids: assentosescolhidos, name: name, cpf: cpf });
         request.then((response) => {
-            console.log(response.data)
             navegar("/sucesso")
         })
         request.catch(error => {
             alert(error.response.data)
-            console.log(error.response.data)
             navegar("/sucesso")
         })
     }

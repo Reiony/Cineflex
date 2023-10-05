@@ -1,12 +1,8 @@
 # Cineflex
 
 Um aplicativo de reserva de ingressos de cinema online, onde os usuários podem escolher o filme, o dia e o horário desejados, selecionar assentos, fornecendo seus dados pessoais para comprar ingressos.
-<div align="center">
-  <img src="https://github.com/Reiony/Cineflex/assets/107890604/507dae7d-faad-4abb-b1ce-2bbaccb3e286" alt="CineFlex" width="250px">
-</div>
 
 ## Sobre
-
 
 O Cineflex é uma aplicação front-end desenvolvida em React que oferece uma maneira conveniente de reservar ingressos para filmes no cinema. As principais funcionalidades incluem:
 
@@ -14,6 +10,10 @@ O Cineflex é uma aplicação front-end desenvolvida em React que oferece uma ma
 * Selecionar a data e horário da sessão.
 * Escolher os assentos disponíveis ao fornecer informações como nome e CPF.
 * Comprar ingressos.
+
+## Deploy
+
+Link do Deploy aqui
 
 ### Tecnologias
 

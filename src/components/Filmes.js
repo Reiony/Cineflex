@@ -8,11 +8,9 @@ export default function PrimeiraPagina() {
         const promessa = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies")
         promessa.then(response => {
             setFilmes(response.data)
-            console.log(response.data)
         })
         promessa.catch(error => {
             alert(error.response.data)
-            console.log(error.response.data)
         })
     }, [])
 
@@ -25,7 +23,7 @@ export default function PrimeiraPagina() {
             <h3>Selecione o filme</h3>
             <ListaFilmes>
                 {filmes.map((item) =>
-                    <Link to={`/sessoes/${item.id}`}>
+                    <Link to={`/sessoes/${item.id}`} key={item.id}>
                         <Filme>
                             <Cartaz>
                                 <img src={item.posterURL} alt={item.posterURL} />
